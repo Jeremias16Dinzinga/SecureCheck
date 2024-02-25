@@ -28,8 +28,8 @@ The system faces a significant challenge with a large number of users reporting 
 ## Outcome:
 The SecureCheck System aims to enhance the security and confidence of users within the system by effectively monitoring and analyzing user behavior. By implementing strict rules and real-time monitoring, the system will significantly reduce the risk of unauthorized access and hacking attempts, thereby improving overall user satisfaction and trust in the system.
 
-## Developer Information: 
-Name: Jeremias António Dinzinga
+## Developer: 
+Name: Jeremias António Dinzinga.
 E-mail: jeremias.antonio1999@gmail.com
 
 <a href="https://www.facebook.com/home.php?_rdc=1&_rdr" class="facebook"><i
