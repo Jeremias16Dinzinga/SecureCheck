@@ -1,5 +1,5 @@
 
-                           ![logo1](https://github.com/Jeremias16Dinzinga/SecureCheck/assets/117875623/a140a50e-d8ac-4339-8c5d-757cde288c3f)
+![logo1](https://github.com/Jeremias16Dinzinga/SecureCheck/assets/117875623/045fa558-841d-4847-9a34-cf86612e2e05)
 
 
 ## About SecureCheck
