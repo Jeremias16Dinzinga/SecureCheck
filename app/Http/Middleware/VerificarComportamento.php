@@ -22,12 +22,14 @@ class VerificarComportamento
 
             // Regra: Não é possível ter o perfil em 2 dispositivos diferentes
             if ($user->devices()->count() > 1) {
-                return redirect('/')->withErrors(['message' => 'Não é possível ter o perfil em 2 dispositivos diferentes.']);
+                return redirect('/login')->withErrors(['message' => 'Não é possível ter o perfil em 2 dispositivos diferentes.']);
             }
 
             // Regra: Não é possível tentar acessar o sistema mais de 2 vezes consecutivas com a senha errada
             if ($user->login_attempts > 2) {
-                return redirect('/')->withErrors(['message' => 'Não é possível tentar acessar o sistema mais de 2 vezes consecutivas com a senha errada.']);
+                return redirect('/login')->withErrors(['message' => 'Não é possível tentar acessar o sistema mais de 2 vezes consecutivas com a senha errada.']);
+            }else{
+                
             }
         } else {
             // Se o usuário não estiver autenticado, redirecione para a página de login

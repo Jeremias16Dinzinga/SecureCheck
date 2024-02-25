@@ -20,10 +20,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verificar.comportamento']);
-Route::get('/logout', function () {
-    Auth::logout();
-    return redirect('/login');
-})->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);

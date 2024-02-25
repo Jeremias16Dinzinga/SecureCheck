@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('login_attempts')->default(0); // Adicionando a coluna login_attempts
             $table->rememberToken();
             $table->timestamps();
         });

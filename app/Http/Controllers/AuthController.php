@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Device;
+use App\Models\User;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -17,39 +20,66 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Verifica se o perfil já está ativo em outro dispositivo
-            if ($this->isProfileActiveOnAnotherDevice()) {
-                Auth::logout(); // Desconecta o usuário
-                return redirect('/login')->withErrors(['message' => 'O perfil já está ativo em outro dispositivo.']); // Redireciona com a mensagem de erro
+
+            // Verifica se o usuário já possui dispositivos associados
+            $user = Auth::user();
+            if ($user->devices()->count() == 0) {
+                if ($user->login_attempts <= 2) {
+                    $device = new Device();
+                    $device->name = $this->generateRandomDeviceName();
+                    $user->devices()->save($device);
+                    return redirect()->intended('/dashboard');
+                } else {
+                    return redirect('/login')->withErrors(['message' => 'Não é possível tentar acessar o sistema mais de 2 vezes consecutivas com a senha errada.']);
+                }
+
+            } else {
+                return redirect('/login')->withErrors(['message' => 'O perfil já está ativo em outro dispositivo.']);
             }
 
-            // Autenticação bem-sucedida
-            return redirect()->intended('/dashboard');
         } else {
-            // Incrementa o número de tentativas de login
-            if (Auth::validate($credentials)) {
-                $user = Auth::getLastAttempted();
-                $user->login_attempts += 1;
-                $user->save();
+            $email = $request->input('email');
+            $user = User::where('email', $email)->first();
+
+
+            if ($user && $user->devices()->count() != 0) {
+                return redirect('/login')->withErrors(['message' => 'O perfil já está ativo em outro dispositivo.']);
+            } else {
+                if (!(Auth::validate($credentials))) {
+                    //$user = Auth::getLastAttempted();
+
+                    if ($user) {
+                        $user->login_attempts += 1;
+                        $user->save();
+                    }
+                }
+                if ($user && $user->login_attempts > 2) {
+                    return redirect('/login')->withErrors(['message' => 'Não é possível tentar acessar o sistema mais de 2 vezes consecutivas com a senha errada.']);
+                } else {
+                    return redirect()->back()->withInput()->withErrors(['email' => 'Credenciais inválidas']);
+
+                }
             }
 
-            return redirect()->back()->withInput()->withErrors(['email' => 'Credenciais inválidas']);
         }
     }
 
-
-    // Método para verificar se o perfil do usuário está ativo em outro dispositivo
-    protected function isProfileActiveOnAnotherDevice()
+    public function logout(Request $request)
     {
-        // Obtém o ID de usuário autenticado
-        $userId = Auth::id();
-
-        // Verifica se o usuário está autenticado e se há uma sessão ativa para esse usuário em outro dispositivo
-        if ($userId && session()->get("user_id_$userId") !== null) {
-            return true; // Se sim, o perfil está ativo em outro dispositivo
+        // Remover dispositivo associado ao usuário
+        $user = Auth::user();
+        if ($user) {
+            $user->devices()->delete();
         }
 
-        return false; // Caso contrário, o perfil não está ativo em outro dispositivo
+        Auth::logout();
+
+        return redirect('/login');
     }
 
+    // Método para gerar um nome aleatório para o dispositivo
+    protected function generateRandomDeviceName()
+    {
+        return 'Device_' . Str::random(8);
+    }
 }
