@@ -1,5 +1,5 @@
 
-![logo1](https://github.com/Jeremias16Dinzinga/SecureCheck/assets/117875623/68571484-fa18-4ec4-acbc-0df61923760c)
+                            ![logo1](https://github.com/Jeremias16Dinzinga/SecureCheck/assets/117875623/68571484-fa18-4ec4-acbc-0df61923760c)
 
 ## About SecureCheck
 
@@ -29,8 +29,8 @@ The system faces a significant challenge with a large number of users reporting 
 The SecureCheck System aims to enhance the security and confidence of users within the system by effectively monitoring and analyzing user behavior. By implementing strict rules and real-time monitoring, the system will significantly reduce the risk of unauthorized access and hacking attempts, thereby improving overall user satisfaction and trust in the system.
 
 ## Developer: 
-Name: Jeremias António Dinzinga.
-E-mail: jeremias.antonio1999@gmail.com
+Jeremias António Dinzinga.
+
 
 <a href="https://www.facebook.com/home.php?_rdc=1&_rdr" class="facebook"><i
                         class="bx bxl-facebook"></i></a>
