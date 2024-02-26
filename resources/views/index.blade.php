@@ -19,7 +19,7 @@
 <body>
     <div class="container">
         <div class="section-title text-center">
-            <img src="{{asset('assets/img/brand/logo1.png')}}"/>            
+            <img class="mb-4" src="../assets/brand/logo1.png" alt="" width="130" height="130">
             <h1 class="mb-5">Bem-vindo ao SecureCheck!</h1>
             <p>Esta é uma página protegida. Somente usuários autenticados podem acessá-lo...</p>
             <a href="{{ route('logout') }}" class="link-secondary">Terminar sessão</a>
