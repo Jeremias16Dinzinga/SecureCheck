@@ -48,9 +48,9 @@
                 </div>
 
                 <div class="checkbox mb-3">
-
+                    <a href="/register" class="link-secondary">Registrar usuário</a>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+                <button class="w-100 btn btn-lg btn-secondary" type="submit">Entrar</button>
                 <p class="mt-5 mb-3 text-muted">&copy; 2024 Jeremias Dinzinga</p>
             </form>
         </main>

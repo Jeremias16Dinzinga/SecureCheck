@@ -27,7 +27,7 @@ class VerificarComportamento
 
             // Regra: Não é possível tentar acessar o sistema mais de 2 vezes consecutivas com a senha errada
             if ($user->login_attempts > 2) {
-                return redirect('/login')->withErrors(['message' => 'Não é possível tentar acessar o sistema mais de 2 vezes consecutivas com a senha errada.']);
+                return redirect('/login')->withErrors(['message' => 'Não é possível tentar acessar o sistema mais de 2 vezes consecutivas com a senha errada. Aguarde 10Minuntos']);
             }else{
                 
             }

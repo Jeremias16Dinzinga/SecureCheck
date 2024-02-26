@@ -17,8 +17,8 @@ use App\Http\Controllers\RegisterController;
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/home', function () {
+    return view('index');
 })->middleware(['auth', 'verificar.comportamento']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
